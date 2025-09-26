@@ -36,6 +36,9 @@ new class extends Component
                     <x-nav-link :href="route('economic-groups')" :active="request()->routeIs('economic-groups')" wire:navigate>
                         {{ __('Grupos Econômicos') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('flags')" :active="request()->routeIs('flags')" wire:navigate>
+                        {{ __('Bandeiras') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -89,6 +92,9 @@ new class extends Component
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('economic-groups')" :active="request()->routeIs('economic-groups')" wire:navigate>
                 {{ __('Grupos Econômicos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('flags')" :active="request()->routeIs('flags')" wire:navigate>
+                {{ __('Bandeiras') }}
             </x-responsive-nav-link>
         </div>
 
