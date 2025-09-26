@@ -1,15 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Livewire\EconomicGroups;
 Route::view('/', 'welcome');
+Route::middleware(['auth'])->group(function () {
+    Route::view('dashboard', 'dashboard')
+        ->middleware(['verified'])
+        ->name('dashboard');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    Route::view('profile', 'profile')
+        ->name('profile');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+    //Rotas Grupo Econômico
+    Route::get('/economic-groups', EconomicGroups::class)->name('economic-groups');
+});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
