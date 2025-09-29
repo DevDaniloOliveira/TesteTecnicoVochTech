@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
         EconomicGroupSeeder::class,
-        // outros seeders...
+        FlagSeeder::class,
+        UnitSeeder::class
     ]);
     }
 }

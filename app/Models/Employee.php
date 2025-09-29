@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class EconomicGroup extends Model
+class Employee extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'name',
-        'cnpj'
+        'email',
+        'cpf',
+        'unit_id',
     ];
 
-    public function flags(): HasMany
+    public function unit()
     {
-        return $this->hasMany(Flag::class);
+        return $this->belongsTo(Unit::class);
     }
 }
