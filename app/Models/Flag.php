@@ -20,4 +20,9 @@ class Flag extends Model
     {
         return $this->belongsTo(EconomicGroup::class);
     }
+
+    public function units()
+    {
+        return $this->hasMany(Unit::class);
+    }
 }

@@ -16,6 +16,16 @@ class Flags extends Component
 
     public $search = '';
     public $economicGroupId = '';
+    public $groups = [];
+
+    public function mount()
+    {
+        $this->groups = cache()->remember('economic-groups.select.all',3600, function(){
+            return EconomicGroup::select('id','name')
+            ->orderBy('name')
+            ->get();
+        });
+    }
 
     #[On('refresh-table')]
     public function render()
@@ -28,7 +38,6 @@ class Flags extends Component
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        $groups = EconomicGroup::all(); // Para o filtro
-        return view('livewire.flags', compact('flags','groups'));
+        return view('livewire.flags', compact('flags'));
     }
 }
