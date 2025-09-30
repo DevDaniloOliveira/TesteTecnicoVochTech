@@ -36,8 +36,8 @@ Sistema completo para gestão de grupos econômicos, bandeiras, unidades e colab
 
 ### 1. Clone o projeto
 ```bash
-git clone https://github.com/seu-usuario/sistema-gestao-economica.git
-cd sistema-gestao-economica
+git clone https://github.com/DevDaniloOliveira/TesteTecnicoVochTech.git
+cd TesteTecnicoVochTech
 ```
 ### 2. Instalação Automática (Recomendado)
 ```bash
