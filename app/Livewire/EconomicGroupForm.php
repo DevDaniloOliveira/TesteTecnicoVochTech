@@ -49,7 +49,7 @@ class EconomicGroupForm extends Component
             ['id' => $this->groupId],
             $this->only(['name', 'cnpj'])
         );
-
+        $this->dispatch('notify', type: 'success', message: 'Grupo salvo com sucesso!');
         $this->showModal = false;
         $this->dispatch('refresh-table');
     }

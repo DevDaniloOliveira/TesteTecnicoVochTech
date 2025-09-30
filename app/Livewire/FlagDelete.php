@@ -22,13 +22,12 @@ class FlagDelete extends Component
     {
         try {
             $this->flagToDelete->delete();
-            
-            session()->flash('success', 'Bandeira excluída com sucesso!');
+            $this->dispatch('notify', type: 'success', message: 'Bandeira excluída com sucesso!');            
             $this->showModalDelete = false;
             $this->dispatch('refresh-table');
             
         } catch (\Exception $e) {
-            session()->flash('error', 'Erro ao excluir bandeira.');
+            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir bandeira.');
         }
     }
     
