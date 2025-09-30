@@ -26,16 +26,35 @@ help:
 	@echo ""
 
 install:
-	@echo "$(GREEN)🚀 Instalando o projeto...$(NC)"
-	cp .env.example .env
-	./vendor/bin/sail up -d --build
-	@echo "$(YELLOW)⏳ Aguardando MySQL ficar pronto...$(NC)"
-	sleep 30
-	./vendor/bin/sail composer install
+	@echo "$(GREEN)🚀 Instalação COMPLETA...$(NC)"
+	
+	@echo "$(YELLOW)📁 Configurando ambiente...$(NC)"
+	cp -n .env.example .env || true
+	
+	@echo "$(YELLOW)📦 Instalando dependências PHP...$(NC)"
+	docker run --rm \
+		-v ".:/app" \
+		-w /app \
+		composer:latest \
+		composer install --ignore-platform-reqs
+	chmod +x vendor/bin/sail
+	
+	@echo "$(YELLOW)🐳 Buildando e subindo containers Docker...$(NC)"
+	./vendor/bin/sail down
+	./vendor/bin/sail build --no-cache
+	./vendor/bin/sail up -d
+	
+	@echo "$(YELLOW)⏳ Aguardando banco de dados...$(NC)"
+	@sleep 20
+	
+	@echo "$(YELLOW)🔑 Configurando aplicação...$(NC)"
 	./vendor/bin/sail artisan key:generate
 	./vendor/bin/sail artisan migrate --seed
+	
+	@echo "$(YELLOW)🎨 Instalando e buildando frontend...$(NC)"
 	./vendor/bin/sail npm install
-	./vendor/bin/sail npm run dev &
+	./vendor/bin/sail npm run build
+
 	@echo "$(GREEN)✅ Instalação concluída!$(NC)"
 	@echo "$(YELLOW)🌐 Acesse: http://localhost$(NC)"
 	@echo "$(YELLOW)👤 Usuário: admin@adm.com$(NC)"
