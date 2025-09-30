@@ -2,37 +2,36 @@
 
 namespace App\Livewire;
 
-use App\Models\EconomicGroup;
+use App\Models\Employee;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class EconomicGroupDelete extends Component
+class EmployeeDelete extends Component
 {
     public $showModalDelete = false;
-    public $groupToDelete;
+    public $employeeToDelete;
 
     #[On('open-delete-modal')]
     public function openDeleteModal($id)
     {
-        $this->groupToDelete = EconomicGroup::find($id);
+        $this->employeeToDelete = Employee::find($id);
         $this->showModalDelete = true;
     }
 
     public function confirmDelete()
     {
         try {
-            $this->groupToDelete->delete();
-            $this->dispatch('notify', type: 'success', message: 'Grupo excluído com sucesso!');
+            $this->employeeToDelete->delete();
+            $this->dispatch('notify', type: 'success', message: 'Colaborador excluído com sucesso!');
             $this->showModalDelete = false;
             $this->dispatch('refresh-table');
-            
         } catch (\Exception $e) {
-            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir grupo.');
+            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir colaborador.');
         }
     }
-    
+
     public function render()
     {
-        return view('livewire.economic-group-delete');
+        return view('livewire.employee-delete');
     }
 }

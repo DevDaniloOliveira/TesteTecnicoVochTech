@@ -2,37 +2,36 @@
 
 namespace App\Livewire;
 
-use App\Models\EconomicGroup;
+use App\Models\Unit;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class EconomicGroupDelete extends Component
+class UnitDelete extends Component
 {
     public $showModalDelete = false;
-    public $groupToDelete;
+    public $unitToDelete;
 
     #[On('open-delete-modal')]
     public function openDeleteModal($id)
     {
-        $this->groupToDelete = EconomicGroup::find($id);
+        $this->unitToDelete = Unit::find($id);
         $this->showModalDelete = true;
     }
 
     public function confirmDelete()
     {
         try {
-            $this->groupToDelete->delete();
-            $this->dispatch('notify', type: 'success', message: 'Grupo excluído com sucesso!');
+            $this->unitToDelete->delete();
+            $this->dispatch('notify', type: 'success', message: 'Unidade excluída com sucesso!');
             $this->showModalDelete = false;
             $this->dispatch('refresh-table');
-            
         } catch (\Exception $e) {
-            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir grupo.');
+            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir unidade.');
         }
     }
-    
+
     public function render()
     {
-        return view('livewire.economic-group-delete');
+        return view('livewire.unit-delete');
     }
 }

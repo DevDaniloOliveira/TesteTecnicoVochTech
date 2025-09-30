@@ -2,37 +2,37 @@
 
 namespace App\Livewire;
 
-use App\Models\EconomicGroup;
+use App\Models\Flag;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class EconomicGroupDelete extends Component
+class FlagDelete extends Component
 {
     public $showModalDelete = false;
-    public $groupToDelete;
+    public $flagToDelete;
 
     #[On('open-delete-modal')]
     public function openDeleteModal($id)
     {
-        $this->groupToDelete = EconomicGroup::find($id);
+        $this->flagToDelete = Flag::find($id);
         $this->showModalDelete = true;
     }
 
     public function confirmDelete()
     {
         try {
-            $this->groupToDelete->delete();
-            $this->dispatch('notify', type: 'success', message: 'Grupo excluído com sucesso!');
+            $this->flagToDelete->delete();
+            $this->dispatch('notify', type: 'success', message: 'Bandeira excluída com sucesso!');            
             $this->showModalDelete = false;
             $this->dispatch('refresh-table');
             
         } catch (\Exception $e) {
-            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir grupo.');
+            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir bandeira.');
         }
     }
     
     public function render()
     {
-        return view('livewire.economic-group-delete');
+        return view('livewire.flag-delete');
     }
 }

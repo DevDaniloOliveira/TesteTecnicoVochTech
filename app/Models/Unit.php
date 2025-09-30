@@ -4,21 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
-class EconomicGroup extends Model implements Auditable
+class Unit extends Model implements Auditable
 {
     use HasFactory, AuditableTrait;
 
     protected $fillable = [
-        'name',
-        'cnpj'
+        'fantasy_name',
+        'social_reason',
+        'cnpj',
+        'flag_id'
     ];
 
-    public function flags(): HasMany
+    public function flag()
     {
-        return $this->hasMany(Flag::class);
+        return $this->belongsTo(Flag::class);
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
     }
 }

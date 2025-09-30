@@ -12,8 +12,8 @@ class EconomicGroupFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company,      // Nome fictício
-            'cnpj' => $this->faker->numerify('##############'), // CNPJ fake
+            'name' => $this->faker->unique()->company(),      // Nome fictício
+            'cnpj' => $this->faker->unique()->numerify('##############'), // CNPJ fake
         ];
     }
 }
