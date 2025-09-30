@@ -43,15 +43,6 @@ cd TesteTecnicoVochTech
 ```bash
 make install
 ```
-### 3. Ou Instalação Manual
-```bash
-cp .env.example .env
-./vendor/bin/sail up -d
-./vendor/bin/sail composer install
-./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan migrate --seed
-./vendor/bin/sail npm run build
-```
 ## 📋 Comandos Úteis
 ```bash
 make install     #Instala e configura o projeto pela primeira vez
