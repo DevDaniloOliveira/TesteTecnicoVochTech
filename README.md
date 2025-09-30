@@ -20,7 +20,6 @@ Sistema completo para gestão de grupos econômicos, bandeiras, unidades e colab
   - Autenticação com Laravel Breeze
   - Sistema de permissões com Spatie
   - Log completo de auditoria
-  - Controle de acesso granular
 
 - **🎯 Experiência Moderna**
   - Interface Livewire responsiva
