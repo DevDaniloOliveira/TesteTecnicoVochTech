@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,10 +21,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+
         $this->call([
+        RoleSeeder::class,
+        AdmSeeder::class,
         EconomicGroupSeeder::class,
         FlagSeeder::class,
-        UnitSeeder::class
+        UnitSeeder::class,
+        EmployeeSeeder::class,
     ]);
     }
 }
