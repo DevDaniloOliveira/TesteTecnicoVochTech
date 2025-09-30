@@ -22,11 +22,11 @@ class UnitDelete extends Component
     {
         try {
             $this->unitToDelete->delete();
-            session()->flash('success', 'Unidade excluída com sucesso!');
+            $this->dispatch('notify', type: 'success', message: 'Unidade excluída com sucesso!');
             $this->showModalDelete = false;
             $this->dispatch('refresh-table');
         } catch (\Exception $e) {
-            session()->flash('error', 'Erro ao excluir unidade.');
+            $this->dispatch('notify', type: 'error', message: 'Erro ao excluir unidade.');
         }
     }
 

@@ -59,7 +59,7 @@ class FlagForm extends Component
             ['id' => $this->flagId],
             $this->only(['name', 'cnpj', 'economic_group_id'])
         );
-
+        $this->dispatch('notify', type: 'success', message: 'Bandeira salva com sucesso!');
         $this->showModal = false;
         $this->dispatch('refresh-table');
     }

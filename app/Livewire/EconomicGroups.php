@@ -26,10 +26,4 @@ class EconomicGroups extends Component
         return view('livewire.economic-groups', compact('groups'));
     }
 
-    public function store() {}
-    
-    public function update() {
-        
-    }
-
 }

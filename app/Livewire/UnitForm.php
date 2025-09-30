@@ -70,7 +70,7 @@ class UnitForm extends Component
             ['id' => $this->unitId],
             $this->only(['fantasy_name', 'social_reason', 'cnpj', 'flag_id'])
         );
-
+        $this->dispatch('notify', type: 'success', message: 'Unidade salva com sucesso!');
         $this->showModal = false;
         $this->dispatch('refresh-table');
     }

@@ -62,7 +62,7 @@ class EmployeeForm extends Component
             ['id' => $this->employeeId],
             $this->only(['name', 'email', 'cpf', 'unit_id'])
         );
-
+        $this->dispatch('notify', type: 'success', message: 'Colaborador salvo com sucesso!');
         $this->showModal = false;
         $this->dispatch('refresh-table');
     }

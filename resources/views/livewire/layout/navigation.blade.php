@@ -36,6 +36,9 @@ new class extends Component
                     <x-nav-link :href="route('audit-logs')" :active="request()->routeIs('audit-logs')" wire:navigate>
                         {{ __('Log de Auditoria') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('reports')" :active="request()->routeIs('reports')" wire:navigate>
+                        {{ __('Relatórios') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('economic-groups')" :active="request()->routeIs('economic-groups')" wire:navigate>
                         {{ __('Grupos Econômicos') }}
                     </x-nav-link>
@@ -101,6 +104,9 @@ new class extends Component
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('audit-logs')" :active="request()->routeIs('audit-logs')" wire:navigate>
                 {{ __('Log de Auditoria') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
+                {{ __('Relatórios') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('economic-groups')" :active="request()->routeIs('economic-groups')" wire:navigate>
                 {{ __('Grupos Econômicos') }}
