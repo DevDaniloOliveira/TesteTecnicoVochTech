@@ -88,7 +88,7 @@ make test
 
 * Frontend: TailwindCSS, Alpine.js, Vite
 
-* Banco: MySQL 8.0
+* Banco: Mariadb:10.11
 
 * Cache/Filas: Database
 
