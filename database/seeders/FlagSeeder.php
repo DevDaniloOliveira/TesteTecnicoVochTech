@@ -26,7 +26,7 @@ class FlagSeeder extends Seeder
         ]);
 
         // Flags específicas para testes
-        Flag::factory()->withName('Supermercado ABC')->forEconomicGroup($economicGroups->first())->create();
-        Flag::factory()->withName('Hipermercado XYZ')->forEconomicGroup($economicGroups->last())->create();
+        // Flag::factory()->withName('Supermercado ABC')->forEconomicGroup($economicGroups->first())->create();
+        // Flag::factory()->withName('Hipermercado XYZ')->forEconomicGroup($economicGroups->last())->create();
     }
 }

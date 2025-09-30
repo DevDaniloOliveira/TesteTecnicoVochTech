@@ -22,7 +22,7 @@ class EmployeeSeeder extends Seeder
         }
 
         // Criar 12 colaboradores distribuídos entre as unidades
-        Employee::factory()->count(12)->create([
+        Employee::factory()->count(200)->create([
             'unit_id' => function() use ($units) {
                 return $units->random()->id;
             }
