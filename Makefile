@@ -27,33 +27,40 @@ help:
 
 install:
 	@echo "$(GREEN)🚀 Instalação COMPLETA...$(NC)"
+
+	@echo "$(YELLOW)🔧 Configurando permissões Git...$(NC)"
+	-git config --global --add safe.directory '$(PWD)'
 	
 	@echo "$(YELLOW)📁 Configurando ambiente...$(NC)"
-	cp -n .env.example .env || true
+	@if [ ! -f .env ]; then \
+		cp .env.example .env; \
+		echo "$(GREEN)✅ .env criado a partir do .env.example$(NC)"; \
+	else \
+		echo "$(YELLOW)📄 .env já existe, mantendo...$(NC)"; \
+	fi
 	
-	@echo "$(YELLOW)📦 Instalando dependências PHP...$(NC)"
-	docker run --rm \
-		-v ".:/app" \
-		-w /app \
-		composer:latest \
-		composer install --ignore-platform-reqs
-	chmod +x vendor/bin/sail
-	
+	@echo "$(YELLOW)📦 Verificando Sail...$(NC)"
+	@if [ ! -f vendor/bin/sail ]; then \
+		echo "$(YELLOW)🔄 Sail não encontrado. Instalando dependências iniciais...$(NC)"; \
+		docker run --rm \
+			-v ".:/app" \
+			-w /app \
+			laravelsail/php84-composer:latest \
+			composer install --ignore-platform-reqs; \
+		echo "$(GREEN)✅ Dependências iniciais instaladas$(NC)"; \
+	fi
+
 	@echo "$(YELLOW)🐳 Buildando e subindo containers Docker...$(NC)"
-	./vendor/bin/sail down
-	./vendor/bin/sail build --no-cache
+	./vendor/bin/sail build
 	./vendor/bin/sail up -d
-	
-	@echo "$(YELLOW)⏳ Aguardando banco de dados...$(NC)"
-	@sleep 20
-	
-	@echo "$(YELLOW)🔑 Configurando aplicação...$(NC)"
-	./vendor/bin/sail artisan key:generate
-	./vendor/bin/sail artisan migrate --seed
 	
 	@echo "$(YELLOW)🎨 Instalando e buildando frontend...$(NC)"
 	./vendor/bin/sail npm install
 	./vendor/bin/sail npm run build
+	
+	@echo "$(YELLOW)🔑 Configurando aplicação...$(NC)"
+	./vendor/bin/sail artisan key:generate
+	./vendor/bin/sail artisan migrate --seed
 
 	@echo "$(GREEN)✅ Instalação concluída!$(NC)"
 	@echo "$(YELLOW)🌐 Acesse: http://localhost$(NC)"
