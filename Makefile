@@ -29,7 +29,7 @@ install:
 	@echo "$(GREEN)🚀 Instalação COMPLETA...$(NC)"
 
 	@echo "$(YELLOW)🔧 Configurando permissões Git...$(NC)"
-	-git config --global --add safe.directory $(pwd)
+	-git config --global --add safe.directory '$(PWD)'
 	
 	@echo "$(YELLOW)📁 Configurando ambiente...$(NC)"
 	@if [ ! -f .env ]; then \
