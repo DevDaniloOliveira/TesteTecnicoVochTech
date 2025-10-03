@@ -51,19 +51,16 @@ install:
 	fi
 
 	@echo "$(YELLOW)🐳 Buildando e subindo containers Docker...$(NC)"
-	./vendor/bin/sail build --no-cache
+	./vendor/bin/sail build
 	./vendor/bin/sail up -d
-	
-	@echo "$(YELLOW)⏳ Aguardando banco de dados...$(NC)"
-	@sleep 20
-	
-	@echo "$(YELLOW)🔑 Configurando aplicação...$(NC)"
-	./vendor/bin/sail artisan key:generate
-	./vendor/bin/sail artisan migrate --seed
 	
 	@echo "$(YELLOW)🎨 Instalando e buildando frontend...$(NC)"
 	./vendor/bin/sail npm install
 	./vendor/bin/sail npm run build
+	
+	@echo "$(YELLOW)🔑 Configurando aplicação...$(NC)"
+	./vendor/bin/sail artisan key:generate
+	./vendor/bin/sail artisan migrate --seed
 
 	@echo "$(GREEN)✅ Instalação concluída!$(NC)"
 	@echo "$(YELLOW)🌐 Acesse: http://localhost$(NC)"
